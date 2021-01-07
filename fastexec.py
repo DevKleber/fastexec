@@ -17,11 +17,11 @@ nameFile="fastexec.py"
 nameCompile="fastexec.py"
 
 sentence = ""
-version = "Version=1.5"
+version = "Version=1.7"
 
 def checkVersion():
     fileExec = "/home/"+userName+"/.config/autostart/fastexec.desktop"
-    path = os.path.join(pathProgramPython, directory) 
+    path = os.path.join(pathProgramPython) 
     if os.path.isfile(fileExec):
         config = open(fileExec, 'r').read()
         arConfig = config.split("\n")
@@ -41,7 +41,7 @@ def operatingSystem():
     reboot(system)
 
 def verifyScriptExists():
-    pathFile = os.path.join(pathProgramPython, directory,nameCompile)
+    pathFile = os.path.join(pathProgramPython,nameCompile)
     if os.path.isfile(pathFile):
         return True
     
@@ -50,7 +50,7 @@ def verifyScriptExists():
 def reboot(systemName):
     fileExec = "/home/"+userName+"/.config/autostart/fastexec.desktop"
     if os.path.isfile(fileExec) == False:
-        pathFile = os.path.join(pathProgramPython, directory,nameCompile)
+        pathFile = os.path.join(pathProgramPython,nameCompile)
         textFile ="[Desktop Entry]\nType=Application\n"+version+"\nExec=python3 "+pathFile+"\nX-GNOME-Autostart-enabled=true\nNoDisplay=false\nHidden=false\nName[en_US]=fastexec\nName[pt_BR]=fastexec\nComment[en_US]=No description\nX-GNOME-Autostart-Delay=1"
 
         f = open(fileExec, "a")
@@ -81,7 +81,6 @@ def fastExec(key):
     else:
         sentence = sentence+key
 
-    print(sentence)
     if(len(sentence) >= 100):
         sentence =""
     

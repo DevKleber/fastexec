@@ -1,2 +1,3 @@
 # fastexec
-Fast open any programs with shortcut
+Ex  
+nohup python3 fastexec.py &
