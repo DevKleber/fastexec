@@ -51,7 +51,7 @@ def reboot(systemName):
     fileExec = "/home/"+userName+"/.config/autostart/fastexec.desktop"
     if os.path.isfile(fileExec) == False:
         pathFile = os.path.join(pathProgramPython,nameCompile)
-        textFile ="[Desktop Entry]\nType=Application\n"+version+"\nExec=python3 "+pathFile+"\nX-GNOME-Autostart-enabled=true\nNoDisplay=false\nHidden=false\nName[en_US]=fastexec\nName[pt_BR]=fastexec\nComment[en_US]=No description\nX-GNOME-Autostart-Delay=1"
+        textFile ="[Desktop Entry]\nType=Application\n"+version+"\nExec=python3 "+pathFile+"\nX-GNOME-Autostart-enabled=true\nNoDisplay=false\nHidden=false\nName[en_US]=fastexec\nName[pt_BR]=fastexec\nComment[en_US]=No description\nX-GNOME-Autostart-Delay=3"
 
         f = open(fileExec, "a")
         f.write(textFile)
