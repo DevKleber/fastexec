@@ -11,7 +11,7 @@ userName = getpass.getuser()
 system = platform.system()
 
 parentDirWindows = ""
-parentDirLinux = "/home/"+userName+"/.config/"
+pathProgramPython = "/home/"+userName+"/.fastexec/"
 directory="fastexec"
 nameFile="fastexec.py"
 nameCompile="fastexec.py"
@@ -21,7 +21,7 @@ version = "Version=1.5"
 
 def checkVersion():
     fileExec = "/home/"+userName+"/.config/autostart/fastexec.desktop"
-    path = os.path.join(parentDirLinux, directory) 
+    path = os.path.join(pathProgramPython, directory) 
     if os.path.isfile(fileExec):
         config = open(fileExec, 'r').read()
         arConfig = config.split("\n")
@@ -32,16 +32,16 @@ def checkVersion():
 
 def operatingSystem():
     checkVersion()
-    path = os.path.join(parentDirLinux, directory) 
-    if(verifyFileExists(path) == False):
-        os.mkdir(path)
-        copyfile(nameFile, path+"/"+nameCompile)
-        os.remove(nameFile)
+    path = os.path.join(pathProgramPython, directory) 
+    if(verifyScriptExists() == False):
+        os.mkdir(pathProgramPython)
+        copyfile(nameFile, pathProgramPython+"/"+nameCompile)
+        # os.remove(nameFile)
     
     reboot(system)
 
-def verifyFileExists(systemName):
-    pathFile = os.path.join(parentDirLinux, directory,nameCompile)
+def verifyScriptExists():
+    pathFile = os.path.join(pathProgramPython, directory,nameCompile)
     if os.path.isfile(pathFile):
         return True
     
@@ -50,14 +50,14 @@ def verifyFileExists(systemName):
 def reboot(systemName):
     fileExec = "/home/"+userName+"/.config/autostart/fastexec.desktop"
     if os.path.isfile(fileExec) == False:
-        pathFile = os.path.join(parentDirLinux, directory,nameCompile)
+        pathFile = os.path.join(pathProgramPython, directory,nameCompile)
         textFile ="[Desktop Entry]\nType=Application\n"+version+"\nExec=python3 "+pathFile+"\nX-GNOME-Autostart-enabled=true\nNoDisplay=false\nHidden=false\nName[en_US]=fastexec\nName[pt_BR]=fastexec\nComment[en_US]=No description\nX-GNOME-Autostart-Delay=1"
 
         f = open(fileExec, "a")
         f.write(textFile)
         f.close()
 
-operatingSystem()
+
 
 def clearSentence():
     global sentence
@@ -109,6 +109,7 @@ def fastExec(key):
     if(sentence == 'opyoutube'):
         webbrowser.get('firefox').open_new_tab('https://www.youtube.com')
         sentence =""
-
+        
+operatingSystem()
 with Listener(on_press=fastExec) as listener:
     listener.join()
